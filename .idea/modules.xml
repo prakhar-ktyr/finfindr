@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tinder-clone.iml" filepath="$PROJECT_DIR$/.idea/tinder-clone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/finfindr.iml" filepath="$PROJECT_DIR$/.idea/finfindr.iml" />
     </modules>
   </component>
 </project>
