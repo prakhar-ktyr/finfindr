@@ -11,7 +11,7 @@ const MatchesDisplay = ({ matches, setClickedUser }) => {
 
     const getMatches = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/users", {
+            const response = await axios.get("https://finfindrbackend.onrender.com/users", {
                 params: { userIds: JSON.stringify(matchedUserIds) },
             });
             setMatchedProfiles(response.data);
@@ -29,7 +29,7 @@ const MatchesDisplay = ({ matches, setClickedUser }) => {
 
     const filteredMatchedProfiles = matchedProfiles?.filter(
         (matchedProfile) =>
-            matchedProfile.matches.filter((profile) => profile.user_id == userId)
+            matchedProfile.matches.filter((profile) => profile.user_id === userId)
                 .length > 0
     );
 

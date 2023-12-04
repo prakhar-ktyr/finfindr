@@ -1,4 +1,4 @@
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const express = require('express')
 const {MongoClient} = require('mongodb')
 const {v4: uuidv4} = require('uuid')
@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
-
+const BASE_URL = process.env.BASE_URL
 const uri = process.env.URI
 
 const app = express()
@@ -217,6 +217,67 @@ app.put('/user', async (req, res) => {
                 url: formData.url,
                 about: formData.about,
                 matches: formData.matches
+            },
+        }
+
+        const insertedUser = await users.updateOne(query, updateDocument)
+
+        res.json(insertedUser)
+
+    } finally {
+        await client.close()
+    }
+})
+
+//update investor in database
+app.put('/investor', async (req, res) => {
+    const client = new MongoClient(uri)
+    const formData = req.body.formData
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+
+        const query = {user_id: formData.user_id}
+
+        const updateDocument = {
+            $set: {
+                net_worth: formData.net_worth,
+                goals: formData.goals,
+                risk_tolerance: formData.risk_tolerance,
+                pyears_experience: formData.pyears_experience
+            },
+        }
+
+        const insertedUser = await users.updateOne(query, updateDocument)
+
+        res.json(insertedUser)
+
+    } finally {
+        await client.close()
+    }
+})
+
+// Update advisor in the Database
+app.put('/advisor', async (req, res) => {
+    const client = new MongoClient(uri)
+    const formData = req.body.formData
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+
+        const query = {user_id: formData.user_id}
+
+        const updateDocument = {
+            $set: {
+                avg_portfolio_vol: formData.avg_portfolio_vol,
+                max_portfolio_vol: formData.max_portfolio_vol,
+                years_experience: formData.years_experience,
+                sebi_registered: formData.sebi_registered,
+                pnet_worth: formData.pnet_worth,
             },
         }
 

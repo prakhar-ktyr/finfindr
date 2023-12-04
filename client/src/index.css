@@ -165,24 +165,11 @@ nav .logo-container .logo {
     font-size: 17px;
 }
 
-/*
-.on {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    background: linear-gradient(
-            to bottom,
-            rgba(7, 30, 61, 0.65) 0%,
-            rgba(0, 0, 0, 0) 100%
-    )
-}*/
-
 
 /*-------- OnBoarding Page --------*/
 .onboarding {
     border-top: solid 1px rgb(213, 213, 213);
 }
-
 .onboarding form {
     display: flex;
     justify-content: center;
@@ -255,10 +242,190 @@ nav .logo-container .logo {
     width: 100%
 }
 
+/*-------- Investor Page --------*/
+.investor-form {
+    border-top: solid 1px rgb(213, 213, 213);
+}
+
+.investor-form form {
+    display: flex;
+    justify-content: center;
+}
+
+.investor-form form section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 35%;
+    text-align: start;
+}
+
+.investor-form form input {
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: solid 2px rgb(219, 219, 219);
+    border-radius: 10px;
+}
+
+.investor-form form label {
+    margin: 10px 0;
+}
+
+.investor-form form .multiple-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.investor-form form input::-webkit-outer-spin-button,
+.investor-form form input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.investor-form form .multiple-input-container input {
+    margin-right: 10px;
+}
+
+.investor-form form .multiple-input-container label {
+    padding: 10px;
+    border: solid 2px rgb(144, 144, 144);
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+.investor-form form input[type=radio] {
+    display: none;
+}
+
+.investor-form form input[type=number] {
+    width: 10%;
+}
+
+.investor-form form input[type=radio]:checked + label {
+    border: solid 2px #1255e5;
+}
+
+.investor-form form input[type=submit]:hover {
+    background-color: rgb(138, 205, 231);
+}
+
+.investor-form form input[type=submit]:active {
+    background-color: rgb(72, 167, 232);
+}
+
+.investor-form form .photo-container img {
+    width: 100%
+}
+
+/*-------- Advisor Page --------*/
+.advisor-form {
+    border-top: solid 1px rgb(213, 213, 213);
+}
+
+.advisor-form form {
+    display: flex;
+    justify-content: center;
+}
+
+.advisor-form form section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 40%;
+    text-align: start;
+}
+
+.advisor-form form input[type="text"],
+.advisor-form form input[type="number"] {
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: solid 2px rgb(219, 219, 219);
+    border-radius: 10px;
+}
+
+.advisor-form form label {
+    margin: 10px 0;
+}
+
+.advisor-form form .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.advisor-form form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.advisor-form form input[type="submit"] {
+    padding: 15px 30px;
+    font-size: 15px;
+    background-color: rgb(255, 255, 255);
+    border: solid 2px rgb(219, 219, 219);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.advisor-form form input[type="submit"]:hover {
+    background-color: rgb(138, 205, 231);
+}
+
+.advisor-form form input[type="submit"]:active {
+    background-color: rgb(72, 167, 232);
+}
+.advisor-form form .multiple-input-container input {
+    margin-right: 10px;
+}
+.advisor-form form .multiple-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.advisor-form form input[type=radio] {
+    display: none;
+}
+
+.advisor-form form input[type=number] {
+    width: 10%;
+}
+
+.advisor-form form input[type=radio]:checked + label {
+    border: solid 2px #1255e5;
+}
+
+.advisor-form form .multiple-input-container label {
+    padding: 10px;
+    border: solid 2px rgb(144, 144, 144);
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+/* Styling adjustments for specific input types if needed */
+.advisor-form form input[type="number"]::-webkit-inner-spin-button,
+.advisor-form form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.advisor-form form input[type="number"] {
+    width: 30%; /* Adjust as needed */
+}
+
+
 /*-------- Dashboard  --------*/
 .dashboard {
     display: flex;
     justify-content: space-between;
+    background: linear-gradient(
+            to bottom,
+            rgba(7, 30, 61, 0.65) 0%,
+            rgba(0, 0, 0, 0) 100%
+    );
 }
 
 .dashboard .swipe-container {
@@ -276,41 +443,67 @@ nav .logo-container .logo {
 
 .dashboard .card-container {
     width: 400px;
-    height: 650px;
-    color: white;
-    text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
+    height: 700px; /* Adjusted height to accommodate details */
+    color: black;
 }
 
 .card {
+    background-color: white;
     width: 400px;
-    height: 650px;
+    height: 700px; /* Increased height */
     border-radius: 30px;
     background-size: cover;
     background-position: center;
-    position: relative; /* Added relative positioning */
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.card h3 {
-    position: absolute; /* Absolute positioning */
-    width: 90%; /* Full width */
-    text-align: center; /* Centered text */
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px; /* Padding for spacing */
+.card-image {
+    height: 50%;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-size: cover;
+    background-position: center;
 }
 
-
-.card h3 {
-    bottom: 10px; /* Positioned at the very bottom */
+.card-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Changed from center to flex-start for left alignment */
+    justify-content: center;
+    padding: 10px;
+    text-align: left; /* Ensure text is left-aligned */
 }
+
+.card-details h4.about {
+    border-top: 1px solid black; /* Thin black line below the 'about' text */
+    padding-top: 5px; /* Adjust padding as needed */
+}
+
+.card h3, .card h4 {
+    margin: 5px 0;
+    width: 100%; /* Ensure full width for proper alignment */
+}
+
 
 .dashboard .swipe-info {
     position: absolute;
-    bottom: 0;
+    top: 50%; /* Center vertically */
+    left: 60%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
     padding: 10px;
+    z-index: 10; /* Ensure it's above other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; /* Larger font size */
+    color: transparent; /* Make the text color transparent */
+    background-image: linear-gradient(45deg, #1255e5, #21E6C1); /* Gradient color */
+    background-clip: text;
+    -webkit-background-clip: text; /* For webkit browsers */
 }
 
 

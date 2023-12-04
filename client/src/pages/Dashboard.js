@@ -7,15 +7,18 @@ import axios from 'axios'
 const Dashboard = () => {
     const [user, setUser] = useState(null)
     const [FinidiedUsers, setFinidiedUsers] = useState(null)
-    const [lastDirection, setLastDirection] = useState()
+    const [lastDirection, setLastDirection] = useState(null)
     const [cookies, setCookie, removeCookie] = useCookies(['user'])
-
     const userId = cookies.UserId
 
+    const updateDirection = (direction) => {
+        setLastDirection(direction);
+        setTimeout(() => setLastDirection(null), 2000); // Clear after 2 seconds
+    }
 
     const getUser = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/user', {
+            const response = await axios.get('https://finfindrbackend.onrender.com/user', {
                 params: {userId}
             })
             setUser(response.data)
@@ -35,15 +38,30 @@ const Dashboard = () => {
         if (user) {
             try {
                 const finid = getOppositeFinid(user.are_you_an);
-                const response = await axios.get('http://localhost:8000/finidied-users', {
+                const response = await axios.get('https://finfindrbackend.onrender.com/finidied-users', {
                     params: { finid }
                 });
-                setFinidiedUsers(response.data);
+
+                let filteredUsers = response.data;
+
+                // Filter based on user type and preferences
+                if (user.are_you_an === 'investor') {
+                    // For investor, filter advisors based on years of experience
+                    filteredUsers = filteredUsers.filter(advisor => advisor.years_experience === user.pyears_experience);
+                } else if (user.are_you_an === 'advisor') {
+                    // For advisor, filter investors based on net worth
+                    if (user.pnet_worth !== 'Net Worth: no preference') {
+                        filteredUsers = filteredUsers.filter(investor => investor.net_worth === user.pnet_worth);
+                    }
+                }
+
+                setFinidiedUsers(filteredUsers);
             } catch (error) {
                 console.log(error);
             }
         }
     }
+
 
     useEffect(() => {
         getUser()
@@ -58,7 +76,7 @@ const Dashboard = () => {
 
     const updateMatches = async (matchedUserId) => {
         try {
-            await axios.put('http://localhost:8000/addmatch', {
+            await axios.put('https://finfindrbackend.onrender.com/addmatch', {
                 userId,
                 matchedUserId
             })
@@ -71,9 +89,9 @@ const Dashboard = () => {
 
     const swiped = (direction, swipedUserId) => {
         if (direction === 'right') {
-            updateMatches(swipedUserId)
+            updateMatches(swipedUserId);
         }
-        setLastDirection(direction)
+        updateDirection(direction);
     }
 
     const outOfFrame = (name) => {
@@ -100,12 +118,25 @@ const Dashboard = () => {
                                     key={finidiedUser.user_id}
                                     onSwipe={(dir) => swiped(dir, finidiedUser.user_id)}
                                     onCardLeftScreen={() => outOfFrame(finidiedUser.name)}>
-                                    <div
-                                        style={{backgroundImage: "url(" + finidiedUser.url + ")"}}
-                                        className="card">
-                                        <h2>{finidiedUser.name}</h2>
-                                        <h3>{finidiedUser.about}</h3>
+                                    <div className="card">
+                                        <div
+                                            className="card-image"
+                                            style={{ backgroundImage: `url(${finidiedUser.url})` }}
+                                        ></div>
+                                        <div className="card-details">
+                                            <h1>{finidiedUser.name}</h1>
+                                            <h4>{finidiedUser.net_worth}</h4>
+                                            <h4>{finidiedUser.goals}</h4>
+                                            <h4>{finidiedUser.risk_tolerance}</h4>
+                                            <h4>{finidiedUser.sebi_registered? 'SEBI Registered' : ''}</h4>
+                                            <h4>{finidiedUser.avg_portfolio_vol}</h4>
+                                            <h4>{finidiedUser.max_portfolio_vol}</h4>
+                                            <h4>{finidiedUser.years_experience}</h4>
+                                            <h4 className="about">{finidiedUser.about}</h4>
+
+                                        </div>
                                     </div>
+
                                 </TinderCard>
                             )}
                             <div className="swipe-info">

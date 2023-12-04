@@ -2,10 +2,11 @@ import Nav from '../components/Nav'
 import {useState} from 'react'
 import {useCookies} from 'react-cookie'
 import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import axios from 'axios';
+import connection from "./connection";
 
 const OnBoarding = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(null)
+    const [cookies] = useCookies(null)
     const [formData, setFormData] = useState({
         user_id: cookies.UserId,
         name: "",
@@ -24,17 +25,26 @@ const OnBoarding = () => {
 
     const handleSubmit = async (e) => {
         console.log('submitted')
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const response = await axios.put('http://localhost:8000/user', {formData})
+            const response = await axios.put(connection.userEndpoint, {formData});
+            //const response = await axios.put('https://finfindrbackend.onrender.com/user', {formData})
             console.log(response)
             const success = response.status === 200
-            if (success) navigate('/dashboard')
+            if (success) {
+                // Redirect based on the role selected
+                if (formData.are_you_an === 'investor') {
+                    navigate('/investor'); // Redirect to the investor page
+                } else if (formData.are_you_an === 'advisor') {
+                    navigate('/advisor'); // Redirect to the advisor page
+                }
+            }
         } catch (err) {
             console.log(err)
         }
-
     }
+
+
 
     const handleChange = (e) => {
         console.log('e', e)
@@ -152,11 +162,11 @@ const OnBoarding = () => {
                                 id="more-gender-identity"
                                 type="radio"
                                 name="gender_identity"
-                                value="more"
+                                value="others"
                                 onChange={handleChange}
-                                checked={formData.gender_identity === "more"}
+                                checked={formData.gender_identity === "others"}
                             />
-                            <label htmlFor="more-gender-identity">More</label>
+                            <label htmlFor="more-gender-identity">Others</label>
                         </div>
 
 
