@@ -18,7 +18,7 @@ const Dashboard = () => {
 
     const getUser = async () => {
         try {
-            const response = await axios.get('https://finfindrbackend.onrender.com/user', {
+            const response = await axios.get('https://finfindr-bcab9a51da87.herokuapp.com/user', {
                 params: {userId}
             })
             setUser(response.data)
@@ -38,7 +38,7 @@ const Dashboard = () => {
         if (user) {
             try {
                 const finid = getOppositeFinid(user.are_you_an);
-                const response = await axios.get('https://finfindrbackend.onrender.com/finidied-users', {
+                const response = await axios.get('https://finfindr-bcab9a51da87.herokuapp.com/finidied-users', {
                     params: { finid }
                 });
 
@@ -76,7 +76,7 @@ const Dashboard = () => {
 
     const updateMatches = async (matchedUserId) => {
         try {
-            await axios.put('https://finfindrbackend.onrender.com/addmatch', {
+            await axios.put('https://finfindr-bcab9a51da87.herokuapp.com/addmatch', {
                 userId,
                 matchedUserId
             })

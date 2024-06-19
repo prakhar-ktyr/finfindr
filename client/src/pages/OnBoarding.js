@@ -23,6 +23,9 @@ const OnBoarding = () => {
 
     let navigate = useNavigate()
 
+
+
+
     const handleSubmit = async (e) => {
         console.log('submitted')
         e.preventDefault();
@@ -196,6 +199,8 @@ const OnBoarding = () => {
                             onChange={handleChange}
                             required={true}
                         />
+
+
                         <div className="photo-container">
                             {formData.url && <img src={formData.url} alt="profile pic preview"/>}
                         </div>

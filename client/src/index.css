@@ -118,20 +118,151 @@ nav .logo-container .logo {
 }
 
 /*----- Home Page ---------*/
+
+
+/* News Articles Container */
+.news-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjusted to manage spacing */
+    gap: 20px; /* Maintains space between blocks */
+    padding: 20px;
+}
+
+/* Anchor tag that wraps the news article */
+.news-article-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits text color from parent */
+    width: calc(33.33% - 13.33px); /* Adjusts width to fit three items per row considering 20px gap */
+    display: flex; /* Makes the link a flex container to align children center */
+    justify-content: center; /* Center items horizontally */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+
+/* Individual News Articles */
+.news-article {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px; /* Space between rows */
+    text-align: left;
+    width: calc((87% - 40px) / 4); /* Calculates width to fit 3 items per row */
+    display: flex; /* Flex to align children */
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: space-between; /* Distributes space among items */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .news-article {
+        width: 100%; /* 100% width for mobile devices to ensure only one article per row */
+    }
+}
+
+/* Image within the news article */
+.news-image {
+    width: 100%; /* Ensures the image fits the container width */
+    height: auto; /* Maintains aspect ratio */
+    border-top-left-radius: 10px; /* Rounded top-left corner */
+    border-top-right-radius: 10px; /* Rounded top-right corner */
+}
+
+
+/* Style for share button */
+.share-button {
+    background: #007bff; /* Bootstrap primary blue */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+
+
+.share-button:hover {
+    background: #0056b3; /* Darken on hover */
+}
+
+
+
+.news-section-title {
+    color: #ffffff;
+    margin-top: 100px;
+    margin-bottom: 0px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    background-color: rgba(46, 49, 49, 0.7);
+    display: block; /* Ensures the element is on its own line */
+    width: fit-content; /* Adjust the width to fit the content */
+    margin-left: auto; /* These two lines center the block element */
+    margin-right: auto;
+    border-radius: 5px;
+
+}
+
+.article-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits text color from parent, removing the blue color */
+}
+
+/* You might also want to add hover effects to make it clear that it's clickable */
+.article-link:hover,
+.article-link:focus {
+    text-decoration: none; /* Keeps underline off on hover/focus */
+    color: grey; /* Optional: change color on hover if needed */
+}
+
+
+
+
+
+/* Adjust the primary title size to fit the scrolling content */
+.primary-title {
+    font-size: 4rem; /* Adjust the font size as needed */
+}
+
+/* Update the overlay to allow for scrolling */
 .overlay {
     width: 100vw;
-    height: 100vh;
-    position: fixed;
+    height: auto; /* Change from fixed height to auto */
+    min-height: 100vh; /* Ensure it takes at least the height of the viewport */
+    position: relative; /* Changed from fixed to relative */
     background: linear-gradient(
             to bottom,
             rgba(7, 30, 61, 0.65) 0%,
             rgba(0, 0, 0, 0) 100%
-    )
+    );
+    padding-bottom: 50px; /* Add some padding at the bottom */
+}
+
+/* You might want to add a container for the title and buttons */
+.title-container {
+    margin-top: 15vh;
+    /* Add other styling as needed */
+}
+
+/* Make sure your button has an appropriate cursor on hover */
+.primary-button:hover,
+.secondary-button:hover {
+    cursor: pointer;
 }
 
 .home {
     margin-top: 15vh;
 }
+
+.news-article .news-image {
+    width: 100%; /* Make the image take the full width of the block */
+    height: auto; /* Keep the aspect ratio of the image */
+    border-top-left-radius: 10px; /* Rounded corners for the top-left of the image */
+    border-top-right-radius: 10px; /* Rounded corners for the top-right of the image */
+}
+
 
 /*----- HAuth Modal ---------*/
 .auth-modal {

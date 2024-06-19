@@ -1,5 +1,5 @@
-//const backendURL = 'http://localhost:8000/';
-const backendURL = 'https://finfindrbackend.onrender.com';
+const backendURL = 'https://finfindr-bcab9a51da87.herokuapp.com';
+//const backendURL = 'https://finfindrbackend.onrender.com';
 
 const connection = {
     advisorEndpoint: `${backendURL}/advisor`,
